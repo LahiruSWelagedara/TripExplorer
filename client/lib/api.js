@@ -1,14 +1,10 @@
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://trip-explorer-9l4jdepdy-lahiru-srikantha-welagedaras-projects.vercel.app/";
+  process.env.NEXT_PUBLIC_API_URL || "https://trip-explorer-9l4jdepdy-lahiru-srikantha-welagedaras-projects.vercel.app";
 
 export async function apiFetch(path, { method = "GET", token, body } = {}) {
-  const headers = {
-    "Content-Type": "application/json",
-  };
+  const headers = { "Content-Type": "application/json" };
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
+  if (token) headers.Authorization = `Bearer ${token}`;
 
   const res = await fetch(`${API_BASE_URL}${path}`, {
     method,
@@ -16,7 +12,7 @@ export async function apiFetch(path, { method = "GET", token, body } = {}) {
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  const data = await res.json().catch(() => null);
+  const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
     const message = data?.message || "Something went wrong";
@@ -36,7 +32,7 @@ export async function uploadImage(file, token) {
     body: formData,
   });
 
-  const data = await res.json().catch(() => null);
+  const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
     const message = data?.message || "Image upload failed";
@@ -45,4 +41,3 @@ export async function uploadImage(file, token) {
 
   return data;
 }
-
