@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  process.env.NEXT_PUBLIC_API_URL || "https://trip-explorer-9l4jdepdy-lahiru-srikantha-welagedaras-projects.vercel.app/";
 
 export async function apiFetch(path, { method = "GET", token, body } = {}) {
   const headers = {
